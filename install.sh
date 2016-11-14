@@ -1,23 +1,9 @@
 #!/bin/bash
 
 # Installs jupyterhub on a MacOSX server.
-# Requires brew and pip.
+# Requires npm and pip.
 
-if [`whoami` != "root"]
-then
-    echo "Need to run as root!"
-    exit 1
-fi
-
-RUNTIME_DIR=/srv/jupyterhub/
-
-# is npm installed?
-which npm > /dev/null 2>&1
-NPM_INSTALLED=`echo $?`
-if [$NPM_INSTALLED != 0]
-then
-    brew install node
-fi
+RUNTIME_DIR=/srv/jupyterhub
 
 python3 -m pip install jupyterhub
 python3 -m pip install notebook
@@ -42,3 +28,13 @@ cp jupyterhub.cert $RUNTIME_DIR
 cp jupyterhub.key $RUNTIME_DIR
 cp jupyterhub_cookie_secret $RUNTIME_DIR
 cp jupyterhub_config.py $RUNTIME_DIR
+
+echo "Finished copying over to "$RUNTIME_DIR
+
+# restrict cookie sharing
+chmod 600 $RUNTIME_DIR/jupyter_cookie_secret
+
+# cleanup
+rm jupyterhub.cert jupyterhub.key jupyterhub_cookie_secret
+
+

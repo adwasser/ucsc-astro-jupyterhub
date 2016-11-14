@@ -4,7 +4,7 @@ import sys
 import os
 
 platform = sys.platform
-eviron = os.environ
+environ = os.environ
 
 runtime_dir = '/srv/jupyterhub/'
 user_dir = '/Users/' if platform == 'darwin' else '/home/'
