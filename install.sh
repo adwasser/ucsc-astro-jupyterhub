@@ -32,7 +32,7 @@ cp jupyterhub_config.py $RUNTIME_DIR
 echo "Finished copying over to "$RUNTIME_DIR
 
 # restrict cookie sharing
-chmod 600 $RUNTIME_DIR/jupyter_cookie_secret
+chmod 600 $RUNTIME_DIR/jupyterhub_cookie_secret
 
 # cleanup
 rm jupyterhub.cert jupyterhub.key jupyterhub_cookie_secret
