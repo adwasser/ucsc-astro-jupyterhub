@@ -7,7 +7,7 @@ platform = sys.platform
 environ = os.environ
 
 runtime_dir = '/srv/jupyterhub/'
-user_dir = '/Users/' if platform == 'darwin' else '/home/'
+user_dir = '/srv/jupyterhub/notebooks/'
 
 #------------------------------------------------------------------------------
 # Debugging
@@ -40,7 +40,7 @@ c.JupyterHub.ssl_key = runtime_dir + 'jupyterhub.key'
 c.Spawner.default_url = '/tree/%U'
 # `~` will be expanded to the user's home directory `%U` will be expanded to the
 # user's username
-c.Spawner.notebook_dir = user_dir + 'notebooks/'
+c.Spawner.notebook_dir = user_dir
 # Disable user config files from being loaded
 c.Spawner.disable_user_config = True
 
@@ -78,7 +78,8 @@ c.Spawner.disable_user_config = True
 
 # New user command for MacOSX.
 if platform == 'darwin':
-    c.LocalAuthenticator.add_user_cmd = [runtime_dir + 'make_user.sh']
+    c.LocalAuthenticator.add_user_cmd = [runtime_dir + 'add_user.sh',
+                                         runtime_dir + 'notebooks']
 
 c.LocalAuthenticator.create_system_users = True
 
