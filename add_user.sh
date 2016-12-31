@@ -25,7 +25,6 @@ getHiddenUserUid()
 
 if  [ $UID -ne 0 ] ; then echo "Please run $0 as root." && exit 1; fi
 
-
 USERNAME=$2
 HOMEDIR=$1/$USERNAME
 SECONDARY_GROUPS="staff"

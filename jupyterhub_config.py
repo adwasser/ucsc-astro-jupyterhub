@@ -36,9 +36,9 @@ c.JupyterHub.ssl_key = runtime_dir + 'jupyterhub.key'
 # Spawner configuration
 #------------------------------------------------------------------------------
 
-# `%U` will be expanded to the user's username
-c.Spawner.default_url = '/tree/%U'
-# `~` will be expanded to the user's home directory `%U` will be expanded to the
+# {username} will be expanded to the user's username
+c.Spawner.default_url = '/tree/{username}'
+# `~` will be expanded to the user's home directory `{username}` will be expanded to the
 # user's username
 c.Spawner.notebook_dir = user_dir
 # Disable user config files from being loaded
